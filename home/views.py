@@ -2,10 +2,23 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
+from .models.product import Product
+from .models.category import Category
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    products = None
+    Categories = Category.get_all_categories()
+    #print(products)
+
+    CategoryId = request.GET.get('category')   #getting this from url
+    if CategoryId:
+        products = Product.get_all_products_byCatID(CategoryId)
+        
+    else:
+        products = Product.get_all_products()
+
+    return render(request, 'index.html', {'products' : products,'categories':Categories})
     #return HttpResponse("Welcome to Homepage!")
 
 def about(request):
@@ -19,6 +32,11 @@ def services(request):
 def contact(request):
     #return HttpResponse("Contact page")
     return render(request, 'contact.html')
+
+def mensPage(request):
+    products = Product.get_all_products()
+    return render(request,'mens.html',{'products':products})
+
 
 def handleSignUp(request):
     if request.method=="POST":
