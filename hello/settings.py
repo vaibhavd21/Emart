@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'home'
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,6 @@ STATICFILES_DIRS = [
 ]
 
 #MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
+
+MEDIA_URL = "/images/products/"
+MEDIA_ROOT = BASE_DIR
