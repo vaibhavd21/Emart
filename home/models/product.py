@@ -20,3 +20,7 @@ class Product(models.Model):
             return Product.objects.filter(category = category_id)
         else:
             return Product.get_all_products()
+
+    @staticmethod
+    def get_product_by_ProductID(product_ids):   #product_ids is the list coming from cart.py
+        return Product.objects.filter(id__in = product_ids)  #returns all the products in product_ids

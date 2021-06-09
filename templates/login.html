@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}
+Login
+{% endblock title %}
+{% block body %}
+
+<div class="container mt-4">
+    
+    <div class="p-4 m-4">
+
+        
+        <div class="col-lg-5 rounded mx-auto border border-secondary rounded pt-4">
+            <div class="text-center col">
+            
+                <img 
+                src="/static/signup.jfif" alt=""
+                class="" style="height: 210px; width: 300px;">
+            <!-- <hr> -->
+            <hr>
+            <div class="display-8"><b><h3>Login To Your Account</h3></b></div>
+            <hr>
+            </div>
+            <h3 hidden class="alert alert-light border rounded">Create An Account</h3>
+            <form action="/login" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="loginusername">Username</label>
+                  <input type="text" class="form-control" id="loginusername" name="loginusername"
+                    placeholder="Enter Username" required>
+                </div>
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="loginpassword">Password</label>
+                  <input type="password" class="form-control" id="loginpassword" name="loginpassword"
+                    placeholder="Enter Password" required>
+                </div>
+                <hr>
+                <button type="submit" class="btn btn-outline-dark">Login</button>
+              </form>
+        </div>
+    </div>
+</div>
+{% endblock body %}
