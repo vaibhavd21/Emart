@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}
+Cart
+{% endblock title %}
+{% block body %}
+
+{% load check_if_prod_inCart %}
+
+<div class="container">
+    <div class="border border-dark rounded p-4 m-4">
+        <!--{{products}}-->
+        <p class="display-5">Your Orders</p>
+        <hr>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Sno.</th>
+                    <th>Item</th>
+                    <th>Item Name</th>
+                    <th>Price</th>
+                    <th>Date</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td><img style="height: 80px;" class="rounded-circle" src="{{order.product.image.url}}" alt="..."></td>
+                    <td>{{order.product.name}}</td>
+                    <td>Rs.{{order.price}}/-</td>
+                    <td>{{order.date}}</td>
+                    <td>{{order.quantity}}</td>
+                    <td>Rs.{{order.quantity|multipy:order.price}}/-</td>
+                    {% if order.status %}
+                    <td><small style="background-color: rgb(21, 180, 42); color: black; " class="badge">Completed</small></td>
+                    {% else %}
+                    <td><small style="background-color: rgb(245, 66, 66); color: black; " class="badge">Pending</small></td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table> 
+    </div>
+</div>
+
+
+{% endblock body %}
