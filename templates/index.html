@@ -51,14 +51,44 @@ Home
 </div>
 
 <div class="container-fluid my-5">
-
+  <style>
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      max-width: 300px;
+      margin: auto;
+      text-align: center;
+      font-family: arial;
+    }
+    
+    .price {
+      color: grey;
+      font-size: 22px;
+    }
+    
+    .card button {
+      border: none;
+      outline: 0;
+      padding: 12px;
+      color: white;
+      background-color: #000;
+      text-align: center;
+      cursor: pointer;
+      width: 100%;
+      font-size: 18px;
+    }
+    
+    .card button:hover {
+      opacity: 0.7;
+    }
+  </style>
+  
   <div class="row mx-auto">
     {% for product in products%}
     <div class="col" id = {{product.id}}>
       <div class="card shadow-sm mx-auto mb-3" style="width: 18rem;">
         <img src="{{product.image.url}}" class="d-block w-100 h-80" alt="...">
         <div class="card-body">
-          <h5 class="card-title">{{product.name}}</h5>
+          <h1 class="card-title">{{product.name}}</h1>
           <p class="card-text">{{product.description}}</p>
           <p class="card-text"><b>Price : </b>Rs.{{product.price}}</p>
           <p class="card-text"><b>Category : </b>"{{product.category}}"</p>
@@ -91,8 +121,8 @@ Home
           <form action="/#{{product.id}}" method="POST" class="my-1">
             {% csrf_token %}
             <input hidden type="text" name="product" value="{{product.id}}">
-            <button onclick="document.location='http://127.0.0.1:8000/about'" type="button" style="margin-left: 0%;"
-              class="btn btn-sm btn-outline-secondary">View</button>
+            <p><button onclick="document.location='http://127.0.0.1:8000/about'" type="button" style="margin-left: 0%;"
+              class="btn btn-sm btn-outline-secondary">View</button></p>
             <input type="submit" class="btn btn-sm btn-outline-secondary" value="Add To Cart">
           </form>
           {% endif %}
